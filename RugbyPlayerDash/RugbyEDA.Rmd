@@ -1,0 +1,24 @@
+---
+title: "RugbyEDA"
+author: "Jack Royal"
+date: "10/04/2020"
+output: html_document
+---
+
+
+
+## Markdown for doing EDA on the Rugby Dataset
+
+```{r}
+#Ideas for plots - add to readme
+#Plot by team top ten matches group by team
+rugby <- read.csv("RugbyPlayerDataESPN1.csv")
+#Scroll bar to select how many players you want to see
+number <- 10
+teamselect <- "NZ"
+attribute <- Mat
+Top10 <- rugby %>% filter(Team == teamselect) %>% top_n(number, Mat)
+
+ggplot(Top10, aes(x = reorder(Player,-Mat,sum),y = Mat)) + geom_bar(stat = "identity")
+
+```
