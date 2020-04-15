@@ -25,14 +25,17 @@ server <- function(input, output) {
     observeEvent(input$tabs, {
         if(input$tabs == "2"){
             show("n")
+            show("teams")
         }else{
             hide("n")
+            hide("teams")
         }
     })
     output$plot1 <- renderPlot({
         #could have like 4 plots each with a different attribute
         number <- input$n
-        Top10 <- rugby %>% filter(Team == "NZ") %>% top_n(number, Mat)
+        team <- input$teams
+        Top10 <- rugby %>% filter(Team == team) %>% top_n(number, Mat)
         p <- ggplot(Top10, aes(x = reorder(Player,-Mat,sum),y = Mat)) + geom_bar(stat = "identity")
         p + theme_wsj()+ scale_colour_wsj("colors6") +
             ggtitle(paste0("Top ", input$n ," players from ", Top10$Team," by number of Pts")) + theme(axis.text.x = element_text(angle = 90, hjust = 1))

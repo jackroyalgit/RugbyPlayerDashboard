@@ -14,7 +14,10 @@ shinyUI(fluidPage(
                   "Number of observations:",
                   value = 10,
                   min = 1,
-                  max = 100)
+                  max = 100),
+      selectInput("teams",
+                  "Team Selection",
+                  choices = rugby$Team, selected = "IRE")
       
     
       
