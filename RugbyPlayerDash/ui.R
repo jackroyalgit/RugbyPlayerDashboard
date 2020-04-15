@@ -1,11 +1,10 @@
-
-
 library(shiny)
+library(shinyjs)
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
+  useShinyjs(),
   titlePanel("Rugby Analysis"),
-  
     
     # Output: Tabset w/ plot, summary, and table ----
 
@@ -20,12 +19,12 @@ shinyUI(fluidPage(
     
       
     ),
-  mainPanel(
-    tabsetPanel(type = "tabs",
-                tabPanel("Player Database", DT::dataTableOutput("rugbydb")),
-                tabPanel("Top 10 Plot", plotOutput("plot1"))
-    )
-  )
+    
+    tabsetPanel(id = "tabs", 
+                tabPanel(value = "1",title = "Player Database", DT::dataTableOutput("rugbydb")),
+                tabPanel(value = "2", title ="Top 10 Plot", plotOutput("plot1"))
+    
+  
   )
     
-))
+)))

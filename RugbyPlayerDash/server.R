@@ -2,6 +2,7 @@ library(shiny)
 library(DT)
 library(dplyr)
 library(ggthemes)
+library(ggplot2)
 
 rugby <- read.csv("RugbyPlayerDataESPN1.csv")
 
@@ -20,6 +21,13 @@ server <- function(input, output) {
             )
         
         
+    })
+    observeEvent(input$tabs, {
+        if(input$tabs == "2"){
+            show("n")
+        }else{
+            hide("n")
+        }
     })
     output$plot1 <- renderPlot({
         #could have like 4 plots each with a different attribute
